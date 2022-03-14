@@ -1,1 +1,871 @@
+create table seriea (
+match_id INTEGER primary key
+,season INTEGER
+,Div INTEGER
+,Date VARCHAR(8)
+,HomeTeam VARCHAR(16)
+,AwayTeam VARCHAR(16)
+,FTHG INTEGER
+,FTAG INTEGER
+,FTR VARCHAR(1)
+,HTHG INTEGER
+,HTAG INTEGER
+,HTR VARCHAR(1)
+,HS INTEGER
+,"AS" INTEGER
+,HST INTEGER
+,AST INTEGER
+,HF INTEGER
+,AF INTEGER
+,HC INTEGER
+,AC INTEGER
+,HY INTEGER
+,AY INTEGER
+,HR INTEGER
+,AR INTEGER
+,B365H REAL
+,B365D REAL
+,B365A REAL
+,BWH REAL
+,BWD REAL
+,BWA INTEGER
+,GBH REAL
+,GBD REAL
+,GBA INTEGER
+,IWH REAL
+,IWD REAL
+,IWA INTEGER
+,LBH REAL
+,LBD REAL
+,LBA INTEGER
+,SBH REAL
+,SBD REAL
+,SBA REAL
+,WHH REAL
+,WHD REAL
+,WHA INTEGER
+,SJH REAL
+,SJD REAL
+,SJA INTEGER
+,VCH REAL
+,VCD REAL
+,VCA INTEGER
+,BSH REAL
+,BSD REAL
+,BSA INTEGER
+,Bb1X2 INTEGER
+,BbMxH REAL
+,BbAvH REAL
+,BbMxD REAL
+,BbAvD REAL
+,BbMxA REAL
+,BbAvA REAL
+,BbOU INTEGER
+,"BbMx>2.5" REAL
+,"BbAv>2.5" REAL
+,"BbMx<2.5" REAL
+,"BbAv<2.5" REAL
+,BbAH INTEGER
+,BbAHh INTEGER
+,BbMxAHH REAL
+,BbAvAHH REAL
+,BbMxAHA REAL
+,BbAvAHA REAL )
 
+create table teams_param (
+teams_param_id INTEGER Primary Key AUTOINCREMENT
+,season INTEGER
+,Date VARCHAR(8)
+,HomeTeam VARCHAR(16)
+,AwayTeam VARCHAR(16)
+,score VARCHAR(5)
+,FTHG INTEGER
+,FTAG INTEGER
+,FTR VARCHAR(1)
+,winner VARCHAR(16)
+,looser VARCHAR(16)
+
+);
+
+insert into teamss (team, wins, looses, draws, total_matches) values ('Lazio','188','108','72','368')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Napoli','218','71','79','368')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Siena','20','36','20','76')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Novara','7','20','11','38')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Bologna','99','147','83','329')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Atalanta','157','104','106','367')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Parma','61','109','58','228')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Udinese','118','154','94','366')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Inter','194','91','82','367')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Cagliari','89','153','88','330')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Roma','196','88','84','368')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Palermo','45','91','54','190')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Lecce','17','39','20','76')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Cesena','8','46','22','76')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Genoa','97','165','106','368')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Milan','188','87','93','368')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Chievo','71','118','77','266')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Juventus','254','43','71','368')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Fiorentina','142','118','107','367')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Catania','26','24','26','76')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Sampdoria','111','138','81','330')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Torino','103','116','110','329')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Pescara','9','54','13','76')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Verona','55','98','63','216')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Empoli','46','81','51','178')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Sassuolo','100','104','88','292')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Carpi','9','18','11','38')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Frosinone','13','46','17','76')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Crotone','24','70','20','114')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Spal','24','62','28','114')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Benevento','13','48','15','76')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Brescia','6','25','7','38')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Spezia','16','31','17','64')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Salernitana','3','16','5','24')
+insert into teamss (team, wins, looses, draws, total_matches) values ('Venezia','5','13','7','25')
+
+/* MILAN */
+--wins
+select * from teams_results
+where HomeTeam = 'Milan' and FTR = 'H'
+OR AwayTeam = 'Milan' and FTR = 'A'
+
+--looses
+select * from teams_results
+where HomeTeam = 'Milan' and FTR = 'A'
+OR AwayTeam = 'Milan' and FTR = 'H'
+
+--drows
+select * from teams_results
+where HomeTeam = 'Milan' and FTR = 'D'
+OR AwayTeam = 'Milan' and FTR = 'D'
+
+/* Lazio */
+--wins
+select * from teams_results
+where HomeTeam = 'Lazio' and FTR = 'H'
+OR AwayTeam = 'Lazio' and FTR = 'A'
+
+--looses
+select * from teams_results
+where HomeTeam = 'Lazio' and FTR = 'A'
+OR AwayTeam = 'Lazio' and FTR = 'H'
+
+--drows
+select * from teams_results
+where HomeTeam = 'Lazio' and FTR = 'D'
+OR AwayTeam = 'Lazio' and FTR = 'D'
+
+/* Napoli */
+--wins
+select * from teams_results
+where HomeTeam = 'Napoli' and FTR = 'H'
+OR AwayTeam = 'Napoli' and FTR = 'A'
+
+--looses
+select * from teams_results
+where HomeTeam = 'Napoli' and FTR = 'A'
+OR AwayTeam = 'Napoli' and FTR = 'H'
+
+--drows
+select * from teams_results
+where HomeTeam = 'Napoli' and FTR = 'D'
+OR AwayTeam = 'Napoli' and FTR = 'D'
+
+/* Siena */
+
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Siena' and FTR = 'H'
+OR AwayTeam = 'Siena' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Siena' and FTR = 'A'
+OR AwayTeam = 'Siena' and FTR = 'H'
+
+--draws
+
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Siena' and FTR = 'D'
+OR AwayTeam = 'Siena' and FTR = 'D'
+
+/* Novara */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Novara' and FTR = 'H'
+OR AwayTeam = 'Novara' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Novara' and FTR = 'A'
+OR AwayTeam = 'Novara' and FTR = 'H'
+
+--draws
+
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Novara' and FTR = 'D'
+OR AwayTeam = 'Novara' and FTR = 'D'
+
+/*Bologna */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Bologna' and FTR = 'H'
+OR AwayTeam = 'Bologna' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Bologna' and FTR = 'A'
+OR AwayTeam = 'Bologna' and FTR = 'H'
+
+--draws
+
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Bologna' and FTR = 'D'
+OR AwayTeam = 'Bologna' and FTR = 'D'
+
+/* Atalanta */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Atalanta' and FTR = 'H'
+OR AwayTeam = 'Atalanta' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Atalanta' and FTR = 'A'
+OR AwayTeam = 'Atalanta' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Atalanta' and FTR = 'D'
+OR AwayTeam = 'Atalanta' and FTR = 'D'
+
+/Parma/
+
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Parma' and FTR = 'H'
+OR AwayTeam = 'Parma' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Parma' and FTR = 'A'
+OR AwayTeam = 'Parma' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Parma' and FTR = 'D'
+OR AwayTeam = 'Parma' and FTR = 'D'
+
+/* Udinese */
+
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Udinese' and FTR = 'H'
+OR AwayTeam = 'Udinese' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Udinese' and FTR = 'A'
+OR AwayTeam = 'Udinese' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Udinese' and FTR = 'D'
+OR AwayTeam = 'Udinese' and FTR = 'D'
+
+/* Inter */
+
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Inter' and FTR = 'H'
+OR AwayTeam = 'Inter' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Inter' and FTR = 'A'
+OR AwayTeam = 'Inter' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Inter' and FTR = 'D'
+OR AwayTeam = 'Inter' and FTR = 'D'
+
+/* Cagliari */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Cagliari' and FTR = 'H'
+OR AwayTeam = 'Cagliari' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Cagliari' and FTR = 'A'
+OR AwayTeam = 'Cagliari' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Cagliari' and FTR = 'D'
+OR AwayTeam = 'Cagliari' and FTR = 'D'
+
+/* Roma */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Roma' and FTR = 'H'
+OR AwayTeam = 'Roma' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Roma' and FTR = 'A'
+OR AwayTeam = 'Roma' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Roma' and FTR = 'D'
+OR AwayTeam = 'Roma' and FTR = 'D'
+
+/* Palermo */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Palermo' and FTR = 'H'
+OR AwayTeam = 'Palermo' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Palermo' and FTR = 'A'
+OR AwayTeam = 'Palermo' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Palermo' and FTR = 'D'
+OR AwayTeam = 'Palermo' and FTR = 'D'
+
+/* Lecce */
+
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Lecce' and FTR = 'H'
+OR AwayTeam = 'Lecce' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Lecce' and FTR = 'A'
+OR AwayTeam = 'Lecce' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Lecce' and FTR = 'D'
+OR AwayTeam = 'Lecce' and FTR = 'D'
+
+/* Cesena */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Cesena' and FTR = 'H'
+OR AwayTeam = 'Cesena' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Cesena' and FTR = 'A'
+OR AwayTeam = 'Cesena' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Cesena' and FTR = 'D'
+OR AwayTeam = 'Cesena' and FTR = 'D'
+
+/* Genoa */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Genoa' and FTR = 'H'
+OR AwayTeam = 'Genoa' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Genoa' and FTR = 'A'
+OR AwayTeam = 'Genoa' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Genoa' and FTR = 'D'
+OR AwayTeam = 'Genoa' and FTR = 'D'
+
+/* Chievo */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Chievo' and FTR = 'H'
+OR AwayTeam = 'Chievo' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Chievo' and FTR = 'A'
+OR AwayTeam = 'Chievo' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Chievo' and FTR = 'D'
+OR AwayTeam = 'Chievo' and FTR = 'D'
+
+/* Juventus */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Juventus' and FTR = 'H'
+OR AwayTeam = 'Juventus' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Juventus' and FTR = 'A'
+OR AwayTeam = 'Juventus' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Juventus' and FTR = 'D'
+OR AwayTeam = 'Juventus' and FTR = 'D'
+
+/* Fiorentina */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Fiorentina' and FTR = 'H'
+OR AwayTeam = 'Fiorentina' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Fiorentina' and FTR = 'A'
+OR AwayTeam = 'Fiorentina' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Fiorentina' and FTR = 'D'
+OR AwayTeam = 'Fiorentina' and FTR = 'D'
+
+/* Catania */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Catania' and FTR = 'H'
+OR AwayTeam = 'Catania' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Catania' and FTR = 'A'
+OR AwayTeam = 'Catania' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Catania' and FTR = 'D'
+OR AwayTeam = 'Catania' and FTR = 'D'
+
+/* Sampdoria */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Sampdoria' and FTR = 'H'
+OR AwayTeam = 'Sampdoria' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Sampdoria' and FTR = 'A'
+OR AwayTeam = 'Sampdoria' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Sampdoria' and FTR = 'D'
+OR AwayTeam = 'Sampdoria' and FTR = 'D'
+
+/* Torino */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Torino' and FTR = 'H'
+OR AwayTeam = 'Torino' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Torino' and FTR = 'A'
+OR AwayTeam = 'Torino' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Torino' and FTR = 'D'
+OR AwayTeam = 'Torino' and FTR = 'D'
+
+/* Pescara */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Pescara' and FTR = 'H'
+OR AwayTeam = 'Pescara' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Pescara' and FTR = 'A'
+OR AwayTeam = 'Pescara' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Pescara' and FTR = 'D'
+OR AwayTeam = 'Pescara' and FTR = 'D'
+
+/* Verona */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Verona' and FTR = 'H'
+OR AwayTeam = 'Verona' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Verona' and FTR = 'A'
+OR AwayTeam = 'Verona' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Verona' and FTR = 'D'
+OR AwayTeam = 'Verona' and FTR = 'D'
+
+/* Empoli */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Empoli' and FTR = 'H'
+OR AwayTeam = 'Empoli' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Empoli' and FTR = 'A'
+OR AwayTeam = 'Empoli' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Empoli' and FTR = 'D'
+OR AwayTeam = 'Empoli' and FTR = 'D'
+
+/* Sassuolo */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Sassuolo' and FTR = 'H'
+OR AwayTeam = 'Sassuolo' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Sassuolo' and FTR = 'A'
+OR AwayTeam = 'Sassuolo' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Sassuolo' and FTR = 'D'
+OR AwayTeam = 'Sassuolo' and FTR = 'D'
+
+/* Carpi */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Carpi' and FTR = 'H'
+OR AwayTeam = 'Carpi' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Carpi' and FTR = 'A'
+OR AwayTeam = 'Carpi' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Carpi' and FTR = 'D'
+OR AwayTeam = 'Carpi' and FTR = 'D'
+
+/* Frosinone */
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Frosinone' and FTR = 'H'
+OR AwayTeam = 'Frosinone' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Frosinone' and FTR = 'A'
+OR AwayTeam = 'Frosinone' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Frosinone' and FTR = 'D'
+OR AwayTeam = 'Frosinone' and FTR = 'D'
+
+/* Crotone */
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Crotone' and FTR = 'H'
+OR AwayTeam = 'Crotone' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Crotone' and FTR = 'A'
+OR AwayTeam = 'Crotone' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Crotone' and FTR = 'D'
+OR AwayTeam = 'Crotone' and FTR = 'D'
+
+/* Spal */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Spal' and FTR = 'H'
+OR AwayTeam = 'Spal' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Spal' and FTR = 'A'
+OR AwayTeam = 'Spal' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Spal' and FTR = 'D'
+OR AwayTeam = 'Spal' and FTR = 'D'
+
+/* Benevento */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Benevento' and FTR = 'H'
+OR AwayTeam = 'Benevento' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Benevento' and FTR = 'A'
+OR AwayTeam = 'Benevento' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Benevento' and FTR = 'D'
+OR AwayTeam = 'Benevento' and FTR = 'D'
+
+/* Brescia */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Brescia' and FTR = 'H'
+OR AwayTeam = 'Brescia' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Brescia' and FTR = 'A'
+OR AwayTeam = 'Brescia' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Brescia' and FTR = 'D'
+OR AwayTeam = 'Brescia' and FTR = 'D'
+
+/* Spezia */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Spezia' and FTR = 'H'
+OR AwayTeam = 'Spezia' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Spezia' and FTR = 'A'
+OR AwayTeam = 'Spezia' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Spezia' and FTR = 'D'
+OR AwayTeam = 'Spezia' and FTR = 'D'
+
+/* Salernitana */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Salernitana' and FTR = 'H'
+OR AwayTeam = 'Salernitana' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Salernitana' and FTR = 'A'
+OR AwayTeam = 'Salernitana' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Salernitana' and FTR = 'D'
+OR AwayTeam = 'Salernitana' and FTR = 'D'
+
+/* Venezia */
+--wins
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Venezia' and FTR = 'H'
+OR AwayTeam = 'Venezia' and FTR = 'A'
+
+--looses
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Venezia' and FTR = 'A'
+OR AwayTeam = 'Venezia' and FTR = 'H'
+
+--draws
+SELECT COUNT(FTR)
+FROM teams_results
+where HomeTeam = 'Venezia' and FTR = 'D'
+OR AwayTeam = 'Venezia' and FTR = 'D'
+
+update seriea as s
+set HomeStreak5 =
+(select count(*) from
+(select matchid ,winner from seriea hs3 where (hs3.HomeTeam=s.hometeam or hs3.awayteam =s.HomeTeam)
+and hs3.matchid < s.matchid and hs3.season =s.season
+order by hs3.matchid asc limit 5) as t where t.winner=s.hometeam ),
+
+awaystreak5 =(select count(*) from
+(select matchid ,winner from seriea hs3 where (hs3.HomeTeam =s.AwayTeam or hs3.AwayTeam =s.AwayTeam)
+and hs3.matchid < s.matchid and hs3.season =s.season
+order by hs3.matchid asc limit 5) as t where t.winner=s.AwayTeam ),
+
+HomeStreak3 =
+(select count(*) from
+(select matchid ,winner from seriea hs3 where (hs3.HomeTeam=s.hometeam or hs3.AwayTeam =s.hometeam)
+and hs3.matchid < s.matchid and hs3.season =s.season
+order by hs3.matchid asc limit 3) as t where t.winner=s.hometeam ),
+
+awaystreak3 =(select count(*) from
+(select matchid ,winner from seriea hs3 where (hs3.hometeam=s.AwayTeam or hs3.AwayTeam =s.AwayTeam)
+and hs3.matchid < s.matchid and hs3.season =s.season
+order by hs3.matchid asc limit 3) as t where t.winner=s.AwayTeam ),
+
+update parameters as s
+set pointsHome=(select sum(point) from
+(select hs3.matchid ,case when hs3.winner =s.hometeam then 3 when hs3.winner='noone' then 1 else 0 end as point
+from parameters hs3 where (hs3.hometeam=s.hometeam or hs3.AwayTeam =s.hometeam)
+and hs3.matchid < s.matchid and hs3.season =s.season
+order by hs3.matchid asc ) as t )
+
+pointsAway= (select sum(point) from
+(select hs3.matchid ,case when hs3.winner =s.awayteam then 3 when hs3.winner='noone' then 1 else 0 end as point
+from seriea hs3 where (hs3.hometeam=s.AwayTeam or hs3.AwayTeam =s.AwayTeam)
+and hs3.matchid < s.matchid and hs3.season =s.season
+order by hs3.matchid asc ) as t ),
+
+HomeResult5=(select sum(point) from
+(select hs3.matchid ,case when hs3.winner =s.awayteam then 3 when hs3.winner='noone' then 1 else 0 end as point
+from seriea hs3 where (hs3.hometeam=s.hometeam or hs3.AwayTeam =s.hometeam)
+and hs3.matchid < s.matchid and hs3.season =s.season
+order by hs3.matchid asc limit 5 ) as t ),
+
+AwayResult5= (select sum(point) from
+(select hs3.matchid ,case when hs3.winner =s.awayteam then 3 when hs3.winner='noone' then 1 else 0 end as point
+from seriea hs3 where (hs3.hometeam=s.AwayTeam or hs3.AwayTeam =s.AwayTeam)
+and hs3.matchid < s.matchid and hs3.season =s.season
+order by hs3.matchid asc limit 5 ) as t ),
+
+AwayScored= (select sum(point) from
+(select hs3.matchid ,case when hs3.hometeam =s.awayteam then FTHG else FTAG end as point
+from seriea hs3 where (hs3.hometeam=s.AwayTeam or hs3.AwayTeam =s.AwayTeam)
+and hs3.matchid < s.matchid and hs3.season =s.season
+order by hs3.matchid asc ) as t ),
+
+AwayConceded= (select sum(point) from
+(select hs3.matchid ,case when hs3.awayteam =s.awayteam then FTHG else FTAG end as point
+from seriea hs3 where (hs3.hometeam=s.AwayTeam or hs3.AwayTeam =s.AwayTeam)
+and hs3.matchid < s.matchid and hs3.season =s.season
+order by hs3.matchid asc ) as t ),
+
+HomeScored= (select sum(point) from
+(select hs3.matchid ,case when hs3.hometeam =s.hometeam then FTHG else FTAG end as point
+from seriea hs3 where (hs3.hometeam=s.hometeam or hs3.AwayTeam =s.hometeam)
+and hs3.matchid < s.matchid and hs3.season =s.season
+order by hs3.matchid asc ) as t ),
+
+HomeConceded = (select sum(point) from
+(select hs3.matchid ,case when hs3.awayteam =s.hometeam then FTHG else FTAG end as point
+from seriea hs3 where (hs3.hometeam=s.hometeam or hs3.AwayTeam =s.hometeam)
+and hs3.matchid < s.matchid and hs3.season =s.season
+order by hs3.matchid asc ) as t )
+
+update parameters
+set
+DifH = HomeScored-HomeConceded -- the greater the better
+,DifA = AwayScored-AwayConceded --the greater the better
+DifPoints = PointsHome - PointsAway --the greater the better for home team and the less the better for away team
+
+/to eleminate negative values/
+update parameters
+set DifPoints = CASE
+WHEN DifPoints<0 THEN DifPoints*(-1)
+ELSE DifPoints
+END;
